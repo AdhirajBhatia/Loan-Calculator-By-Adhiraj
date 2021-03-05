@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Calculator</title>
+    <link rel="shortcut icon" href="https://i.postimg.cc/W1cxLpJb/loan.png" type="image/x-icon" />
+    <meta name="description" content="Loan Calculator" />
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/W1cxLpJb/loan.png">
+    <style>
+        html {
+            background-image: url(https://i.ibb.co/RPNp5MK/Abstract-Triangle-Vect.jpg);
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* Do not repeat the image */
+            background-size: cover;
+            /* Resize the background image to cover the entire container */
+        }
+
+        body {
+            font-family: Georgia;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: white;
+            border: solid 3px;
+        }
+
+        h2 {
+            background-color: white;
+            border: solid 3px;
+        }
+
+        hr {
+            visibility: hidden;
+        }
+
+        button {
+            background-color: white;
+            font-size: 24px;
+            font-family: Georgia;
+            border: solid 3px;
+        }
+
+        input {
+            font-size: 22px;
+            font-family: Georgia;
+            font-weight: bold;
+            text-align: center;
+            border: solid 3px;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        label {
+            font-size: 1.5em;
+            font-family: Georgia;
+            font-weight: bolder;
+            border: solid 3px;
+            background-color: white;
+            color: black;
+        }
+
+        #calculate {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function Calc() {
+            var amount = parseInt(document.getElementById("amount").value);
+            var interest = parseInt(document.getElementById("interest").value);
+            var months = parseInt(document.getElementById("months").value);
+            var ir = (amount * (interest / 100) * (months / 12));
+            var apm = ((amount + ir) / months).toFixed(2);
+            document.getElementById("apm").style.visibility = "visible";
+            document.getElementById("apm").innerHTML = "EMI = ₹ " + apm;
+        }
+        if ("serviceWorker" in navigator) {
+            // register service worker
+            navigator.serviceWorker.register("service-worker.js");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Loan Calculator</h1>
+    <label for="amount">Enter Loan Amount :</label><br><br>
+    <input id="amount" type="number" step="0.01"></input><br><br>
+    <label for="interest">Enter Interest Rate (%) :</label><br><br>
+    <input id="interest" type="number" step="0.01"></input><br><br>
+    <label for="months">Enter Months :</label><br><br>
+    <input type="number" id="months" step="0.01"></input><br><br>
+    <button id="calculate" onclick="Calc()">Calculate</button><br><br>
+    <label id="apm" style="visibility:hidden"></label><br><br>
+</body>
+
+</html>
