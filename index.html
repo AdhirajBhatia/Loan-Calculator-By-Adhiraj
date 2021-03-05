@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Calculator</title>
+	<link rel="shortcut icon" href="https://i.postimg.cc/0ynx0H62/calculator-1.png" type="image/x-icon">
+	<meta name="description" content="Calculator">
+	<link rel="manifest" href="manifest.json">
+	<meta name="theme-color" content="white">
+	<link rel="apple-touch-icon" href="https://i.postimg.cc/0ynx0H62/calculator-1.png">
+	<style>
+		html {
+			background-image: url(https://i.ibb.co/RPNp5MK/Abstract-Triangle-Vect.jpg);
+			height: 100%;
+			background-position: center;
+			background-repeat: no-repeat;
+			/* Do not repeat the image */
+			background-size: cover;
+			/* Resize the background image to cover the entire container */
+		}
+
+		body {
+			font-family: Georgia;
+			text-align: center;
+		}
+
+		h1 {
+			text-align: center;
+			background-color: white;
+			border: solid 3px;
+		}
+
+		h2 {
+			background-color: white;
+			border: solid 3px;
+		}
+
+		hr {
+			visibility: hidden;
+		}
+
+		button {
+			background-color: white;
+			font-size: 24px;
+			font-family: Georgia;
+			border: solid 3px;
+		}
+
+		input {
+			font-size: 22px;
+			font-family: Georgia;
+			font-weight: bold;
+			text-align: center;
+			border: solid 3px;
+		}
+
+		input[type="number"] {
+			-moz-appearance: textfield;
+		}
+
+		input[type="number"]::-webkit-inner-spin-button,
+		input[type="number"]::-webkit-outer-spin-button {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		select {
+			outline: 0;
+			background: white;
+			background-image: none;
+			width: 100%;
+			height: 100%;
+			color: black;
+			cursor: pointer;
+			border: 3px solid black;
+			border-radius: 3px;
+			font-family: Georgia;
+			font-weight: bold;
+			font-size: 18px;
+			text-align: center;
+		}
+
+		.select {
+			position: relative;
+			display: inline-block;
+			width: 40%;
+			height: 50%;
+			line-height: 3;
+			overflow: hidden;
+			border-radius: 0.25em;
+			padding-bottom: 10px;
+			text-align: center;
+		}
+
+		#buttons {
+			text-align: center;
+		}
+
+		#clear {
+			float: right;
+			font-weight: bold;
+		}
+
+		#Calculate {
+			float: left;
+			font-weight: bold;
+		}
+
+		label {
+			font-size: 1.5em;
+			font-family: Georgia;
+			font-weight: bolder;
+			border: solid 3px;
+			background-color: white;
+			color: black;
+		}
+
+		#answer {
+			visibility: hidden;
+			padding: 5px;
+		}
+
+		
+	</style>
+	<script>
+		function Calculate() {
+           var num1 = parseInt(document.getElementById("num1").value);
+           var num2 = parseInt(document.getElementById("num2").value);
+           var operation = document.getElementById("select").value;
+           if (operation == "+") {
+              var sum = num1 + num2;
+              document.getElementById("answer").style.visibility = "visible";
+              document.getElementById("answer").innerHTML = sum;
+            }
+            if (operation == "-") {
+               var diff = num1 - num2;
+               document.getElementById("answer").style.visibility = "visible";
+               document.getElementById("answer").innerHTML = diff;
+            }
+            if (operation == "*") {
+                var pro = num1 * num2;
+                document.getElementById("answer").style.visibility = "visible";
+                document.getElementById("answer").innerHTML = pro;
+            }
+            if (operation == "/") {
+               var quo = num1 / num2;
+               document.getElementById("answer").style.visibility = "visible";
+               document.getElementById("answer").innerHTML = quo;
+            }
+        }
+        function Clear() {
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            document.getElementById("select").value = "+";
+            document.getElementById("answer").style.visibility = "hidden";
+        }
+	if ("serviceWorker" in navigator) {
+  // register service worker
+  navigator.serviceWorker.register("service-worker.js");
+}
+	</script>
+</head>
+
+<body>
+	<h1>Calculator</h1>
+	<label for="num1">Enter First Number : </label><br><br>
+	<input id = "num1" type="number" step = "0.01"></input><br>
+    <h2>Select Operation : </h2>
+    <select class = "select" id="select">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+    </select><br><br>
+    <label for="num2">Enter Second Number : </label><br><br>
+	<input id = "num2" type="number" step="0.01"></input><br><br>
+	<div>
+		<button id = "Calculate" onclick="Calculate ()">Calculate</button>
+        <button id = "clear" onclick="Clear ()">Clear</button>
+	</div>
+	<br><hr>
+	<h2>Answer = </h2><br><br>
+    <label id = "answer"></label>
+</body>
+</html>
